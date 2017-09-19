@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.project.dao.daointerface.SalesmanDao">
+    <select id="FindSalesmanInfo" resultType="SalesmanInfo">
+        SELECT *
+        FROM salesmaninfo
+    </select>
+    <delete id="DeleteSalesinfobyname" parameterType="String">
+        DELETE FROM salesmaninfo
+        WHERE name=#{name}
+    </delete>
+    <insert id="InsertSalesmanInfo" parameterType="SalesmanInfo">
+        INSERT INTO salesmaninfo(
+        salesmanid,
+        name,
+        post,
+        idcard,
+        phone,
+        age,
+        realname,
+        gender
+        )VALUES (
+        #{salesmanid},
+        #{name},
+        #{post},
+        #{idcard},
+        #{phone},
+        #{age},
+        #{realname},
+        #{gender}
+        )
+    </insert>
+</mapper>

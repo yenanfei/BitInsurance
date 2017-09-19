@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.project.dao.daointerface.PolicyDao">
+    <select id="FindPolicy" resultType="Policy">
+          SELECT *
+          FROM policy
+          WHERE name=#{name}
+    </select>
+    <insert id="InsertPolicy" parameterType="Policy">
+        INSERT INTO policy(
+        policyid,
+        productid,
+        name,
+        userrecordid
+        )VALUES (
+        #{policyid},
+        #{productid},
+        #{name},
+        #{userrecordid}
+        )
+    </insert>
+    <select id="FindPolicybypolicyid" resultType="Policy">
+                  SELECT *
+          FROM policy
+          WHERE policyid=#{policyid}
+    </select>
+</mapper>

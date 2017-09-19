@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.project.dao.daointerface.ReportDao">
+    <select id="FindReport" resultType="Report">
+        SELECT *
+        FROM report
+    </select>
+    <select id="FindReportbyreportid" resultType="Report">
+        SELECT *
+        FROM report
+        WHERE reportid=#{reportid}
+    </select>
+    <update id="UpdateReportbyreportid" parameterType="Report">
+        UPDATE report
+        <set>
+            <if test="agree!=-1">
+                argee=#{agree},
+            </if>
+            <if test="agreeperson!=null">
+                agreeperson=#{agreeperson}
+            </if>
+        </set>
+        WHERE reportid=#{reportid}
+    </update>
+    <insert id="InsertReportbyreportid" parameterType="Report">
+        INSERT INTO report(
+        recordid,
+        from1,
+        to1,
+        reason,
+        agree
+        )VALUES (
+        #{recordid},
+        #{from1},
+        #{to1},
+        #{reason},
+        #{agree}
+        )
+    </insert>
+    <select id="FindReportbyto" resultType="Report">
+        SELECT *
+        FROM report
+        WHERE from1=#{from1}
+    </select>
+</mapper>

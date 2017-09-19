@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.project.dao.daointerface.InsuranceInfoDao">
+    <delete id="DeleteInsurancebyproductid" parameterType="int">
+        DELETE  FROM insurance
+        WHERE productid=#{productid}
+    </delete>
+    <select id="FindInsurancebyproductid" resultType="Insurance">
+        SELECT *
+        FROM insurance
+        WHERE productid=#{productid}
+    </select>
+    <select id="FindInsurance" resultType="Insurance">
+        SELECT *
+        FROM  insurance
+    </select>
+    <insert id="InsertInsurance" parameterType="Insurance">
+        INSERT INTO insurance(
+          shortcut,
+          name,
+          price,
+          text
+        )VALUES(
+        #{shortcut},
+        #{name},
+        #{price},
+        #{text}
+        )
+    </insert>
+</mapper>

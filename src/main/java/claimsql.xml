@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.project.dao.daointerface.ClaimDao">
+    <select id="findClaim" resultType="Claim">
+        SELECT *
+        FROM claim
+    </select>
+
+    <select id="findClaimByPolicyId" resultType="Claim">
+        SELECT *
+        FROM claim
+        WHERE policyid=#{PolicyId}
+    </select>
+
+    <select id="findClaimByClaimid" resultType="Claim">
+        SELECT *
+        FROM claim
+        WHERE claimid=#{Claimid}
+    </select>
+
+    <insert id="InsertClaim" parameterType="Claim">
+        INSERT INTO claim (
+        policyid, reason, allowed, denyreason
+        )
+        VALUES (
+        #{policyid},
+        #{reason},
+        #{allowed},
+        #{denyreason}
+        )
+    </insert>
+
+    <update id="UpdateClaimbyClaimId" parameterType="Claim" >
+        UPDATE claim
+        <set>
+        <if test="policyid != 0">
+            policyid=#{policyid},
+        </if>
+        <if test="reason != null">
+            reason=#{reason},
+        </if>
+        <if test="allowed != null">
+            allowed=#{allowed},
+        </if>
+        <if test="denyreason != null">
+            denyreason=#{denyreason}
+        </if>
+        WHERE claimid=#{claimid}
+        </set>
+    </update>
+
+    <delete id="DeleteClaimById" parameterType="Claim">
+        DELETE FROM claim
+        WHERE claimid=#{Claimid}
+    </delete>
+</mapper>

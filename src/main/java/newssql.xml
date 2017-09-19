@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.project.dao.daointerface.NewsDAO">
+    <select id="findNews" resultType="News">
+        SELECT *
+        FROM news
+    </select>
+
+    <select id="findNewsbyTitle" parameterType="String" resultType="News">
+        SELECT *
+        FROM news
+        WHERE  title=#{title}
+    </select>
+
+    <update id="updateNewsbyTitle" parameterType="String" >
+        UPDATE news
+        <set>
+        <if test="text != null">
+            text=#{text},
+        </if>
+        WHERE title=#{title}
+        </set>
+    </update>
+
+    <delete id="DeleteNewsByTitle" parameterType="String">
+        DELETE FROM news
+        WHERE title=#{title}
+    </delete>
+
+    <insert id="InsertNews" parameterType="News">
+        INSERT INTO news (
+        text, time, from, title
+        )
+        VALUES (
+        #{text},
+        #{time},
+        #{from},
+        #{title},
+        )
+    </insert>
+</mapper>
